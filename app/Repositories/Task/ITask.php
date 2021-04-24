@@ -10,5 +10,5 @@ interface ITask
      * @param string $field , $value
      * @return {collection} Return a collection task
      */
-    public function filterTaskByFied($field, $value);
+    public function filterByFied($field, $value);
 }

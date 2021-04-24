@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\API_Admin\Task;
+namespace App\Http\Controllers\API_Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -27,7 +27,7 @@ class TaskController extends Controller
      * Get all data to table Task
      * @return collection Return a collection Task
      */
-    public function getAllTask()
+    public function getAll()
     {
         $result = new TaskCollection($this->taskRepository->get());
         return response($result, 200);
@@ -37,7 +37,7 @@ class TaskController extends Controller
      * Get a Task by id
      * @return Task Return a Task
      */
-    public function getTaskById($id)
+    public function getById($id)
     {
         $result = new TaskResource($this->taskRepository->getById($id));
         return response($result, 200);
@@ -49,9 +49,9 @@ class TaskController extends Controller
      * @param {string} $sumary
      * @return {json}
      */
-    public function filterTaskByFied($field, $value)
+    public function filterByFied($field, $value)
     {
-        $result = $this->taskRepository->filterTaskByFied($field, $value);
+        $result = $this->taskRepository->filterByFied($field, $value);
         if (gettype($result) == "boolean") {
             return response(null, 400);
         }
@@ -64,7 +64,7 @@ class TaskController extends Controller
      * @param {TaskRequest} $request
      * @return {json}
      */
-    public function createTask(TaskRequest $request)
+    public function create(TaskRequest $request)
     {
         $result = $this->taskRepository->create($request->all());
         if (empty($result->id)) {
@@ -80,7 +80,7 @@ class TaskController extends Controller
      * @param {int} $id
      * @return {json}
      */
-    public function updateTask(TaskRequest $request, $id)
+    public function update(TaskRequest $request, $id)
     {
         $result = $this->taskRepository->update($id, $request->all());
         if ($result) {
@@ -95,7 +95,7 @@ class TaskController extends Controller
      * @param {int} $id
      * @return {json}
      */
-    public function deleteTask($id)
+    public function delete($id)
     {
         $result = $this->taskRepository->delete($id);
         if ($result) {

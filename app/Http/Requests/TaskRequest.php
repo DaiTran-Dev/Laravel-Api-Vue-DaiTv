@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use SebastianBergmann\Environment\Console;
 
 class TaskRequest extends FormRequest
 {
@@ -23,31 +24,19 @@ class TaskRequest extends FormRequest
      */
     public function rules()
     {
-        if(!empty($this->id)){
+        if (!empty($this->id)) {
             $id = $this->id;
         }
-        switch ($this->method()) {
-            case 'POST':
-                return [
-                    'project_id' => 'required',
-                    'issue_type' => 'required',
-                    'reporter' => 'required',
-                    'summary' => 'required|unique:tasks,summary'
-                ];
-                break;
-
-            case 'PUT':
-                return [
-                    'project_id' => 'required',
-                    'issue_type' => 'required',
-                    'reporter' => 'required',
-                    'summary' => 'required|unique:tasks,summary,' .  $id
-                ];
-                break;
-
-            default:
-                break;
+        $rulesCollection = [
+            'project_id' => 'required',
+            'issue_type' => 'required',
+            'reporter' => 'required',
+            'summary' => 'required|unique:tasks,summary'
+        ];
+        if (strcmp($this->method(), "PUT") == 0 && !empty($this->id)) {
+            $rulesCollection['summary'] .= "," . $this->id;
         }
+        return $rulesCollection;
     }
 
     /**

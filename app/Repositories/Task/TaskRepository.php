@@ -23,7 +23,7 @@ class TaskRepository extends BaseRepository implements ITask
      * @param string $field $value
      * @return {collection} Return a collection task
      */
-    public function filterTaskByFied($field, $value)
+    public function filterByFied($field, $value)
     {
         if (gettype($this->model->fieldAll) == "array") {
             if (in_array($field, $this->model->fieldAll)) {

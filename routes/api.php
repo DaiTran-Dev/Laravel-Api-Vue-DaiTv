@@ -15,11 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //API Task
-Route::group(['namespace' => 'Task'], function () {
-    Route::get('tasks', 'TaskController@getAllTask');
-    Route::get('tasks/{id}', 'TaskController@getTaskById');
-    Route::post('tasks', 'TaskController@createTask');
-    Route::put('tasks/{id}', 'TaskController@updateTask');
-    Route::delete('tasks/{id}', 'TaskController@deleteTask');
-    Route::get('tasks/{title}/like/{value}', 'TaskController@filterTaskByFied');
-});
+Route::get('tasks', 'TaskController@getAll');
+Route::get('tasks/{id}', 'TaskController@getById');
+Route::get('tasks/{title}/like/{value}', 'TaskController@filterByFied');
+Route::post('tasks', 'TaskController@create');
+Route::put('tasks/{id}', 'TaskController@update');
+Route::delete('tasks/{id}', 'TaskController@delete');
