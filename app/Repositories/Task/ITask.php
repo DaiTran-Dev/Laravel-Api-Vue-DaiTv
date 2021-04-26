@@ -2,7 +2,9 @@
 
 namespace App\Repositories\Task;
 
-interface ITask
+use App\Repositories\IRepository;
+
+interface ITask extends IRepository
 {
     /**
      * Get all data by field to table task

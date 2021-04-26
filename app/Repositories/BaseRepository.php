@@ -65,7 +65,6 @@ abstract class BaseRepository implements IRepository
      */
     public function create($attributes = [])
     {
-        $attributes['due_date'] = date("Y-m-d", strtotime($attributes['due_date']));
         return $this->model->create($attributes);
     }
 
@@ -82,7 +81,6 @@ abstract class BaseRepository implements IRepository
         if (!$task) {
             return false;
         }
-        $attributes['due_date'] = date("Y-m-d", strtotime($attributes['due_date']));
         return $task->update($attributes);
     }
 

@@ -21,3 +21,6 @@ Route::get('tasks/{title}/like/{value}', 'TaskController@filterByFied');
 Route::post('tasks', 'TaskController@create');
 Route::put('tasks/{id}', 'TaskController@update');
 Route::delete('tasks/{id}', 'TaskController@delete');
+
+//API User
+// Route::post('auth/register',);

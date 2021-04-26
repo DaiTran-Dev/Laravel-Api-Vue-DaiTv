@@ -18,6 +18,20 @@ class TaskRequest extends FormRequest
     }
 
     /**
+     * Prepare the data for validation.
+     *
+     * @return void
+     */
+    protected function prepareForValidation()
+    {
+        if (!empty($this->due_date)) {
+            $this->merge([
+                'due_date' => date("Y-m-d", strtotime($this->due_date))
+            ]);
+        }
+    }
+
+    /**
      * Get the validation rules that apply to the request.
      *
      * @return array
