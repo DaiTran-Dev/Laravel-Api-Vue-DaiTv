@@ -8,6 +8,7 @@ use App\Http\Resources\TaskCollection;
 use App\Http\Resources\TaskResource;
 use App\Repositories\Task\TaskRepository;
 use App\Http\Requests\TaskRequest;
+use App\Repositories\Task\ITask;
 
 class TaskController extends Controller
 {
@@ -16,9 +17,9 @@ class TaskController extends Controller
     /**
      * Construct TaskController
      *
-     * @param TaskRepository $taskRepository
+     * @param ITask $taskRepository
      */
-    public function __construct(TaskRepository $taskRepository)
+    public function __construct(ITask $taskRepository)
     {
         $this->taskRepository = $taskRepository;
     }
